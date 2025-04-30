@@ -3,3 +3,4 @@ friends = ["Apple", "Orange", 5, 234.23, False, "Adil", "Raza"] # List of differ
 print(friends[0])
 friends[0] = "Grapes" # Updating the value of the first element
 print(friends[0]) 
+print(friends[1:4]) # Slicing the list
