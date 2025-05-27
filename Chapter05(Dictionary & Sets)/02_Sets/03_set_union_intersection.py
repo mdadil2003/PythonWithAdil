@@ -8,3 +8,4 @@ print(s1.intersection(s2)) # returns a new set with elements common to both sets
 print(s1.difference(s2)) # returns a new set with elements in s1 but not in s2
 
 print(s2.issubset(s1)) # returns True if s2 is a subset of s1
+  

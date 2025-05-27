@@ -5,7 +5,9 @@ words = {
     "नमस्ते": "Hello",
     "kursi": "Chair",
     "billi": "Cat",
+    "kutta": "dog",
+    "maddad": "help",
+    
 } 
 word = input("Enter a Hindi word meaning of: ")
 print(words[word]) # returns a new set with all elements from both sets
-
