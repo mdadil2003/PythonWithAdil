@@ -7,4 +7,5 @@ words = {
     "billi": "Cat",
 } 
 word = input("Enter a Hindi word meaning of: ")
-print(words[word])
+print(words[word]) # returns a new set with all elements from both sets
+
