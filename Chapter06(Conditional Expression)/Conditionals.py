@@ -6,4 +6,4 @@ if (a>=18):
     
 else:
     print("You are not above the age of consent")
-    
+    print("You are not old enough to consent")
