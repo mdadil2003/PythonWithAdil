@@ -1,7 +1,12 @@
 # Pass statement:-  Does nothing and is used when a statement is syntactically required but you don’t want any command or code to execute.
 
 
-for num in range(1, 10):
-    if num == 5:
-        pass  # does nothing when num is 5
-    print(num)
+for i in range(645):
+    pass  # does nothing, just a placeholder
+    
+i = 0
+while (i<45):
+    print(i)
+    i += 1  # increment i by 1
+
+print("End of Program")  # this will still execute
