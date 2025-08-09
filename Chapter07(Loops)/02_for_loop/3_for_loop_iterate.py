@@ -13,5 +13,6 @@ for i in t:
 s = "Adil Raza"    
 
 for i in s:
+
     print(i)
     
