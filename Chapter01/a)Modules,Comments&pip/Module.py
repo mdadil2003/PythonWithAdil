@@ -4,7 +4,7 @@ imported and used in our programs. '''
 
 import pyjokes
 
-# print("Printing Joks....")  //this is a comment
+# print("Printing Jokes....")  # this is a comment 
 # joke = pyjokes.get_joke()
 
 joke = pyjokes.get_joke()
