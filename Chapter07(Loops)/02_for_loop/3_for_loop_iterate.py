@@ -11,6 +11,7 @@ for i in t:
 
 ## For loops with strings  
 s = "Adil Raza"    
+
 for i in s:
     print(i)
     
