@@ -7,6 +7,7 @@ def avg():
     
     average = (a + b + c)/3
     print(average)
-    
-avg()  # Call the function once
+ 
+ # Call the function once   
+avg()  
 print("Function successfully executed.")
