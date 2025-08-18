@@ -1,8 +1,8 @@
 # 1. Write a program using functions to find greatest of three numbers.
 
-a = 1 
-b = 2
-c = 3
+# a = 1 
+# b = 2
+# c = 3
 
 def greatest(a, b, c):
     if(a>b and a>c):
