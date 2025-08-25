@@ -12,10 +12,10 @@ def greatest(a, b, c):
     elif(c>b and c>a):
         return c
     
-    a = 1
-    b = 2
-    c = 3
+a = 1
+b = 23
+c = 3
     
-    print(greatest(a, b, c))
+print(greatest(a, b, c))
 
 
