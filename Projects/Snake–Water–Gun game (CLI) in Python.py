@@ -2,9 +2,9 @@
 
 import random
 
-CHOICES = ["snake", "water", "gun"]
+CHOICES = ["snake", "water", "gun"] # valid choices
 ALIAS = {"s": "snake", "w": "water", "g": "gun"}  # handy shortcuts
-BEATS = {"snake": "water", "water": "gun", "gun": "snake"}
+BEATS = {"snake": "water", "water": "gun", "gun": "snake"} # winning choices
 
 def normalize_choice(raw: str):
     raw = raw.strip().lower()
@@ -21,7 +21,7 @@ def round_result(player: str, comp: str):
 
 def main():
     print("Snake–Water–Gun  |  choose: [s]nake, [w]ater, [g]un  |  quit: q")
-    player_score = comp_score = draws = 0
+    player_score = comp_score = draws = 0 
 
     while True:
         user_inp = input("\nYour pick (s/w/g or full word, q to quit): ").strip().lower()
@@ -33,7 +33,7 @@ def main():
             print("Invalid choice. Use s/w/g or snake/water/gun.")
             continue
 
-        comp = random.choice(CHOICES)
+        comp = random.choice(CHOICES) # computer's choice
         result = round_result(player, comp)
 
         # announce
