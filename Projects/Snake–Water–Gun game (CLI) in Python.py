@@ -20,6 +20,7 @@ def round_result(player: str, comp: str):
     return "win" if BEATS[player] == comp else "lose"
 
 def main():
+
     print("Snake–Water–Gun  |  choose: [s]nake, [w]ater, [g]un  |  quit: q")
     player_score = comp_score = draws = 0 
 
