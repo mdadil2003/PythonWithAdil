@@ -47,7 +47,6 @@ def main():
         else:
             print("→ Draw.")
             draws += 1
-
         print(f"Score — You: {player_score}  Comp: {comp_score}  Draws: {draws}")
 
     print("\nFinal Score:")
