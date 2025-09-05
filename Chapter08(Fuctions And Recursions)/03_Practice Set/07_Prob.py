@@ -8,4 +8,5 @@ def remove_and_strip(l, word):
     return n
 
 l = ["Adil", "Ali", "Aamir", "Apple", "an"]
-print(remove_and_strip(l, "an"))
+
+print(remove_and_strip(l, "Apple"))
