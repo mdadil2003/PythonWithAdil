@@ -1,6 +1,7 @@
 # 7. Write a python function to remove a given word from a list ad strip it at the same time.
 
 def remove_and_strip(l, word):
+    
     n = []
     for item in l:
         if not(item == word):
