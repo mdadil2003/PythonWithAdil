@@ -21,6 +21,5 @@ def fahrenheit_to_celsius(fahrenheit):
 
 fahrenheit = float(input("Enter temperature in Fahrenheit: "))
 celsius = fahrenheit_to_celsius(fahrenheit)
+
 print(f"{fahrenheit} Fahrenheit is equal to {celsius} Celsius.")
-
-
