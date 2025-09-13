@@ -10,3 +10,5 @@ for word in a.split():
         email.append(word)
         if "." in word:
             email.append(word)
+            print(email)
+            
