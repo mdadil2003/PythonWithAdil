@@ -1,14 +1,9 @@
-a = "a very long string with emails"
+a = "Contact me at test@example.com for details."
 
-email = []
-
-import email
-
+emails = []
 
 for word in a.split():
-    if "@" in word:
-        email.append(word)
-        if "." in word:
-            email.append(word)
-            print(email)
-            
+    if "@" in word and "." in word:
+        emails.append(word)
+
+print(emails)
