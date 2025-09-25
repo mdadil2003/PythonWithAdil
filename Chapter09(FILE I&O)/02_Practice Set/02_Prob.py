@@ -12,7 +12,6 @@ def game():
             hiscore = int(hiscore)
         else:
             hiscore = 0
-            
     print(f"Your score:{score}")
     if(score>hiscore):
         # write this hiscore to the file
