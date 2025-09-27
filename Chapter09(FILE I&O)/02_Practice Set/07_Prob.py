@@ -6,6 +6,6 @@ with open("log.txt", "r") as f:
         if "python" in line:
             print(f"'python' found on line {index + 1}")
             break
-    else:
+    else:  
         print("'python' not found in the file")
  
