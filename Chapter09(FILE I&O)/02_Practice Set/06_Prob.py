@@ -6,3 +6,4 @@ with open("log.txt", "r") as f:
         print("Log file contains 'python'")
     else:
         print("Log file does not contain 'python'")
+        
