@@ -8,3 +8,4 @@ with open("log.txt", "r") as f:
             break
     else:  
         print("'python' not found in the file")
+        
