@@ -8,4 +8,4 @@ class Employee:  # defining a class
     
 adil = Employee() 
 adil.name = "Adil" # this is an instance attribute
-print(adil.name, adil.company, adil.salary, adil.location, adil.role, adil.language) 
+print(adil.name, adil.company, adil.salary, adil.location, adil.role, adil.language)
