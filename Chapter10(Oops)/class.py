@@ -10,3 +10,5 @@ adil = Employee()
 adil.name = "Adil" # this is an instance attribute
 print(adil.name, adil.company, adil.salary, adil.location, adil.role, adil.language)
 # printing instance attribute and class attributes
+
+# Employee.salary = 120000 # changing the class attribute
