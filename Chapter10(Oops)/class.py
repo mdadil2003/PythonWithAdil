@@ -11,4 +11,3 @@ adil.name = "Adil" # this is an instance attribute
 print(adil.name, adil.company, adil.salary, adil.location, adil.role, adil.language)
 # printing instance attribute and class attributes
 print(Employee.company)
-
