@@ -14,6 +14,5 @@ class Manager(Programmer):
         print("Constructor of Manager")
     c = 3
 
-
 o = Manager() 
 print(o.a, o.b, o.c)
