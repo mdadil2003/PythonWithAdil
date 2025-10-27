@@ -4,7 +4,7 @@ class Employee:
     a = 1
     
 class Programmer(Employee): 
-    def __init__(self):
+    def __init__(self):  # Calling the constructor of the parent class
         print("Constructor of Programmer")
     b = 2
 
