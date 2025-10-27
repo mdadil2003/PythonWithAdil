@@ -6,7 +6,7 @@ class Vector2D:
         self.y = y
     
     def show(self):
-        print(f"Vector2D: ({self.x}, {self.y})")    
+        print(f"Vector2D: ({self.x}x + {self.y}y)")    
 
 class Vector3D(Vector2D):  # Inheriting from Vector2D
     def __init__(self, x, y, z):
@@ -14,9 +14,9 @@ class Vector3D(Vector2D):  # Inheriting from Vector2D
         self.z = z
 
     def show(self):
-        print(f"Vector3D: ({self.x}, {self.y}, {self.z})")
+        print(f"Vector3D: ({self.x}x + {self.y}y + {self.z}z)")
 
-a = Vector2D(1, 2) # Creating an object of Vector2D
+a = Vector2D(6, 2) # Creating an object of Vector2D
 a.show()
 b = Vector3D(4, 5, 6) # Creating an object of Vector3D
 b.show()
