@@ -7,7 +7,7 @@ import datetime # For telling the time
 import musicLibrary # For music playback
 import os # For operating system interactions
 
-recognizer = sr.Recognizer()
+# Initialize the speech engine
 engine = pyttsx3.init()
 
 # Function: Process voice commands
@@ -89,7 +89,7 @@ if __name__ == "__main__":
                 # listen for the next command
                 with sr.Microphone() as source:
                     print("Jarvis Active...")
-                    audio = r.listen(source)
+                    audio = r.listen(source, timeout=5, phrase_time_limit=5)
                     command = r.recognize_google(audio)
                     processCommand(command)
     
@@ -103,7 +103,3 @@ if __name__ == "__main__":
         except Exception as e:
             print("Error; {0}".format(e))
             speak("Some error occurred. Please try again.")
-            continue
-
-
-# Jarvis voice assistant with speech recognition and text-to-speech
