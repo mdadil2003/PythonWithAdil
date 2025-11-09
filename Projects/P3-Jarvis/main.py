@@ -4,7 +4,8 @@ import speech_recognition as sr # For speech recognition
 import webbrowser # For opening web pages
 import pyttsx3 # Text-to-speech conversion library
 import datetime # For telling the time
-
+import musicLibrary # For music playback
+import os # For operating system interactions
 
 recognizer = sr.Recognizer()
 engine = pyttsx3.init()
@@ -37,7 +38,27 @@ def processCommand(c):
     elif "time" in c.lower():
         current_time = datetime.datetime.now().strftime("%I:%M %p")
         speak(f"The time is {current_time}")
-
+        
+    elif "play" in c:
+        # Extract song name after 'play'
+        words = c.split()
+        try:
+            idx = words.index("play")
+            song = " ".join(words[idx + 1:]).strip()
+        except ValueError:
+            song = ""
+        
+        if not song:
+            speak("Please tell me which song you want to play.")
+            return
+        
+        link = musicLibrary.music.get(song) if hasattr(musicLibrary, "music") else None
+        if link:
+            speak(f"Playing {song}")
+            webbrowser.open(link)
+        else:
+            speak(f"Sorry, I don't have {song} in my library.")
+        
     elif "how are you" in c.lower():
         speak("I'm doing great, thank you for asking!")
 
@@ -59,22 +80,30 @@ if __name__ == "__main__":
         print("Recognizing...")
         try:
             with sr.Microphone() as source:
-                print("Listening...")
+                print("jarvis Listening...")
                 audio = r.listen(source, timeout=2, phrase_time_limit=1)
 
             word = r.recognize_google(audio)
             if(word.lower() == "jarvis"):
-                speak("Ya")
-                    # listen for the next command
+                speak("Yes, how can I help you?")
+                # listen for the next command
                 with sr.Microphone() as source:
                     print("Jarvis Active...")
                     audio = r.listen(source)
                     command = r.recognize_google(audio)
- 
                     processCommand(command)
     
+        except sr.UnknownValueError:
+            print("Could not understand audio")
+        except sr.RequestError as e:
+            print("Could not request results; {0}".format(e))
+        except KeyboardInterrupt:
+            print("Program interrupted by user")
+            break
         except Exception as e:
             print("Error; {0}".format(e))
+            speak("Some error occurred. Please try again.")
+            continue
 
 
 # Jarvis voice assistant with speech recognition and text-to-speech
