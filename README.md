@@ -1,6 +1,6 @@
 # 🐍 Python Learning Journey
 
-This repository marks my first milestone in mastering Python programming — completed through **CodeWithHarry’s 10-Hour Python Tutorial** on YouTube.  
+This repository marks my first milestone in mastering Python programming — completed through **CodeWithHarry’s 11-Hour Python Tutorial** on YouTube.  
 It represents the start of my journey toward **Data Analysis** and **AI/ML development**.
 
 ---
