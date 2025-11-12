@@ -15,6 +15,7 @@ pyautogui.dragTo(1199, 944, duration=1, button='left')
 
 # Step 3: Copy selected text
 pyautogui.hotkey('ctrl', 'c')
+pyautogui.click(1199, 944) # click to remove selection
 time.sleep(0.5)
 
 # Step 4: Get copied text from clipboard
