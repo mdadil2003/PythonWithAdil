@@ -1,17 +1,19 @@
 from openai import OpenAI
+from google import genai
 
 
-# client = OpenAI()
-
-client = OpenAI(
-api_key=" paste-your-openai-api-key-here ",
+client = genai(
+  api_key="YOUR_API_KEY",
 )
 
+command = ''''
+Mujhe ek aisa python function likh ke do jo ki ek list of numbers ko input le aur usme se sirf prime numbers ko return kare.
+'''
 completion = client.chat.completions.create(
-   model= "gpt-3.5-turbo",
+   model= "gemini-2.5-flash",
    messages=[
-       {"role": "system", "content": "You are a virtual assistant named jarvis skilled in general tasks like Alexa and Google Cloud"},
-       {"role": "user", "content": "what is coding"}
+       {"role": "system", "content": "You are a person named Adil who speaks hindi as well as english. He is from India and is coder. You analyze chat history and respond like Adil"},
+       {"role": "user", "content": command}
    ]
 )
 
