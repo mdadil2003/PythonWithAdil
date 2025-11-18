@@ -40,27 +40,26 @@ action = [
 ]
 
 places_and_things = [
-    "a new planet",
-    "a groundbreaking technology",
-    "a controversial policy",
-    "a viral trend",
-    "a historic event",
-    "a medical breakthrough",
+    "new planet",
+    "groundbreaking technology",
+    " controversial policy",
+    "viral trend",
+    "historic event",
+    " medical breakthrough",
     "an environmental initiative",
-    "a social movement",
+    " social movement",
     "a sports championship",
-    "a cultural festival",
-    "a new movie",
+    "cultural festival",
+    "new movie",
     "a music album",
-    "a fashion line",
-    "a video game",
-    "a scientific study",
+    " fashion line",
+    "video game",
+    "scientific study",
     "red fort",
     "india gate",
     "plate of samosas",
     "cup of chai"
 ]
-
 
 # function to generate a fake headline
 
