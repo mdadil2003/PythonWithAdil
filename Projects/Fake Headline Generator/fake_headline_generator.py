@@ -1,7 +1,7 @@
 # import the randum mudule 
 import random
 
-# create subjects
+# create subjects 
 subjects = [ 
     "Scientists",
     "Politicians",
@@ -71,7 +71,7 @@ while True:
     headline = f"BREAKING NEWS: {subjects_choice} {action_choice} {places_and_things_choice}!"
     print("\n" + headline)
     
-    
+    # user input
     user_input = input("\nDo you want to another headline?? (Yes/No)").strip().lower()
     if user_input == "no":
         break
