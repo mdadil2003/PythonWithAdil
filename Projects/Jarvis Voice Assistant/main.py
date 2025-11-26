@@ -16,7 +16,6 @@ recoognizer = sr.Recognizer() # Initialize the recognizer
 engine = pyttsx3.init() # Initialize the TTS engine
 newsapi = " key " # News API key
 
-
 # Function: Process voice commands
 def speak_old(text):
     engine.say(text)
@@ -35,7 +34,6 @@ def speak(text):
 
     pygame.mixer.music.unload()
     os.remove('temp.mp3')
-    
     
     
 def aiProcess(command):
