@@ -138,6 +138,7 @@ if __name__ == "__main__":
             word = r.recognize_google(audio)
             if(word.lower() == "jarvis"):
                 speak("Yes, how can I help you?")
+                
                 # listen for the next command
                 with sr.Microphone() as source:
                     print("Jarvis Active...")
