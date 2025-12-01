@@ -1,4 +1,5 @@
 # import the randum mudule 
+from email import generator
 import random
 
 # create subjects 
@@ -77,3 +78,13 @@ while True:
         break
 
 print("\nThanks for using the Fake Headline Generator. Have a fun day")
+
+# function to generate a fake headline
+generator
+def generate_fake_headline():
+    subjects_choice = random.choice(subjects)
+    action_choice = random.choice(action)
+    places_and_things_choice = random.choice(places_and_things)
+      
+    headline = f"BREAKING NEWS: {subjects_choice} {action_choice} {places_and_things_choice}!"
+    return headline
