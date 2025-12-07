@@ -1,7 +1,7 @@
-import pyautogui 
-import time 
-import pyperclip
-from openai import OpenAI
+import pyautogui # pip install pyautogui
+import time # pip install time 
+import pyperclip # pip install pyperclip
+from openai import OpenAI # pip install openai
 
 client = OpenAI(
   api_key="YOUR_API_KEY",
