@@ -1,5 +1,5 @@
 from openai import OpenAI  # pip install openai 
-# from google import genai # pip install google-genai
+from google import genai # pip install google-genai
 
 client = OpenAI(
   api_key="YOUR_API_KEY",
