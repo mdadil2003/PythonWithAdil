@@ -87,4 +87,4 @@ def generate_fake_headline():
     places_and_things_choice = random.choice(places_and_things)
       
     headline = f"BREAKING NEWS: {subjects_choice} {action_choice} {places_and_things_choice}!"
-    return headline
+    return headline # return the generated headline
