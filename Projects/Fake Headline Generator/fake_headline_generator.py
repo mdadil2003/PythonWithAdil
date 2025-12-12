@@ -65,9 +65,9 @@ places_and_things = [
 # function to generate a fake headline
 
 while True:
-    subjects_choice = random.choice(subjects)
+    subjects_choice = random.choice(subjects) # select a random subject from the subjects
     action_choice = random.choice(action)
-    places_and_things_choice = random.choice(places_and_things)
+    places_and_things_choice = random.choice(places_and_things) # select a random place or thing from the places_and_things
       
     headline = f"BREAKING NEWS: {subjects_choice} {action_choice} {places_and_things_choice}!"
     print("\n" + headline)
