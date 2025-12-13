@@ -40,7 +40,7 @@ action = [
     "sing to"
 ]
 
-places_and_things = [
+places_and_things = [  # list of places and things
     "new planet",
     "groundbreaking technology",
     " controversial policy",
@@ -62,7 +62,7 @@ places_and_things = [
     "cup of chai"
 ]
 
-# function to generate a fake headline
+# function to generate a fake headline 
 
 while True:
     subjects_choice = random.choice(subjects) # select a random subject from the subjects
@@ -72,14 +72,14 @@ while True:
     headline = f"BREAKING NEWS: {subjects_choice} {action_choice} {places_and_things_choice}!"
     print("\n" + headline)
     
-    # user input
+    # user input to generate another headline or exit
     user_input = input("\nDo you want to another headline?? (Yes/No)").strip().lower()
     if user_input == "no":
         break
 
 print("\nThanks for using the Fake Headline Generator. Have a fun day")
 
-# function to generate a fake headline
+# function to generate a fake headline 
 generator
 def generate_fake_headline():
     subjects_choice = random.choice(subjects)
