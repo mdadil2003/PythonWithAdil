@@ -64,13 +64,13 @@ places_and_things = [  # list of places and things
 
 # function to generate a fake headline 
 
-while True:
+while True:  # infinite loop to keep generating headlines until user decides to exit
     subjects_choice = random.choice(subjects) # select a random subject from the subjects
     action_choice = random.choice(action)
     places_and_things_choice = random.choice(places_and_things) # select a random place or thing from the places_and_things
       
     headline = f"BREAKING NEWS: {subjects_choice} {action_choice} {places_and_things_choice}!"
-    print("\n" + headline)
+    print("\n" + headline) # print the generated headline
     
     # user input to generate another headline or exit
     user_input = input("\nDo you want to another headline?? (Yes/No)").strip().lower()
