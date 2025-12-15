@@ -77,6 +77,7 @@ while True:  # infinite loop to keep generating headlines until user decides to 
     if user_input == "no":
         break
 
+
 print("\nThanks for using the Fake Headline Generator. Have a fun day")
 
 # function to generate a fake headline 
