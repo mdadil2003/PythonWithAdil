@@ -2,7 +2,7 @@
 from email import generator
 import random
 
-# create subjects 
+# create subjects list 
 subjects = [ 
     "Scientists",
     "Politicians",
@@ -21,6 +21,7 @@ subjects = [
     "software developers"
 ]
 
+# create action list
 action = [
     "discover",
     "announce",
