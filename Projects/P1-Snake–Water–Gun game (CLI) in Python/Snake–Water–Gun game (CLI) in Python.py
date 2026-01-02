@@ -6,20 +6,20 @@ ALIAS = {"s": "snake", "w": "water", "g": "gun"}
 BEATS = {"snake": "water", "water": "gun", "gun": "snake"}
 
 
-def normalize_choice(raw):
+def normalize_choice(raw): # Normalize user input to full choice name
     raw = raw.strip().lower()
     if raw in CHOICES:
         return raw
     return ALIAS.get(raw)
 
 
-def round_result(player, comp):
+def round_result(player, comp): # Determine round outcome
     if player == comp:
         return "draw"
     return "win" if BEATS[player] == comp else "lose"
 
 
-def smart_computer_choice(player_history):
+def smart_computer_choice(player_history): # Determine computer's choice based on player's history
     """
     Adaptive AI:
     - If player repeats a choice often, counter it
@@ -29,6 +29,7 @@ def smart_computer_choice(player_history):
         return random.choice(CHOICES)
 
     most_common = Counter(player_history).most_common(1)[0][0]
+    
     # Computer plays what beats player's frequent choice
     for move, beats in BEATS.items():
         if beats == most_common:
@@ -36,7 +37,7 @@ def smart_computer_choice(player_history):
     return random.choice(CHOICES)
 
 
-def play_game():
+def play_game(): # Main game loop
     print("\n🎮 SNAKE–WATER–GUN (ADVANCED MODE)")
     print("Choose: [s]nake, [w]ater, [g]un")
     print("Type 'q' anytime to quit\n")
@@ -94,7 +95,7 @@ def play_game():
             print("\n🏁 Match decided early!")
             break
 
-    # Final summary
+    # Final summary and stats 
     print("\n📊 MATCH SUMMARY")
     print("-" * 30)
     for i, (p, c, r) in enumerate(history_log, start=1):
@@ -116,7 +117,7 @@ def play_game():
         print(f"📈 Your win rate: {win_rate:.2f}%")
 
 
-def main():
+def main(): # Entry point for the game
     while True:
         play_game()
         again = input("\nPlay again? (y/n): ").lower()
