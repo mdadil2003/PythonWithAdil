@@ -1,56 +1,98 @@
-import random
-from collections import Counter
+import random # For random choices
+import json # For profile storage
+import os # For file operations
+from collections import Counter # For counting player history 
 
-CHOICES = ["snake", "water", "gun"]
-ALIAS = {"s": "snake", "w": "water", "g": "gun"}
-BEATS = {"snake": "water", "water": "gun", "gun": "snake"}
+# ------------------ CONSTANTS ------------------
+CHOICES = ["snake", "water", "gun"] # Valid choices
+ALIAS = {"s": "snake", "w": "water", "g": "gun"} # Shortcuts
+BEATS = {"snake": "water", "water": "gun", "gun": "snake"} # Winning logic
+PROFILE_FILE = "player_profile.json" # Profile storage file
 
+RESULT_EMOJI = {
+    "win": "✅",
+    "lose": "❌",
+    "draw": "⚖️"
+}
 
-def normalize_choice(raw): # Normalize user input to full choice name
+# ------------------ PROFILE SYSTEM ------------------
+def load_profile():
+    if os.path.exists(PROFILE_FILE):
+        with open(PROFILE_FILE, "r") as f:
+            return json.load(f)
+    return {
+        "name": "",
+        "games": 0,
+        "wins": 0,
+        "losses": 0
+    }
+
+def save_profile(profile):
+    with open(PROFILE_FILE, "w") as f:
+        json.dump(profile, f, indent=4)
+
+# ------------------ CORE LOGIC ------------------
+def normalize_choice(raw):
     raw = raw.strip().lower()
     if raw in CHOICES:
         return raw
     return ALIAS.get(raw)
 
-
-def round_result(player, comp): # Determine round outcome
+def round_result(player, comp):
     if player == comp:
         return "draw"
     return "win" if BEATS[player] == comp else "lose"
 
-
-def smart_computer_choice(player_history): # Determine computer's choice based on player's history
-    """
-    Adaptive AI:
-    - If player repeats a choice often, counter it
-    - Otherwise choose randomly
-    """
+# ------------------ AI LOGIC ------------------
+def smart_computer_choice(player_history):
     if not player_history:
         return random.choice(CHOICES)
 
     most_common = Counter(player_history).most_common(1)[0][0]
-    
-    # Computer plays what beats player's frequent choice
     for move, beats in BEATS.items():
         if beats == most_common:
             return move
     return random.choice(CHOICES)
 
+def computer_choice(player_history, difficulty):
+    if difficulty == "easy":
+        return random.choice(CHOICES)
+    elif difficulty == "medium":
+        return smart_computer_choice(player_history)
+    else:  # hard
+        if random.random() < 0.7:
+            return smart_computer_choice(player_history)
+        return random.choice(CHOICES)
 
-def play_game(): # Main game loop
+def explain_ai(player_history):
+    if player_history:
+        most = Counter(player_history).most_common(1)[0][0]
+        print(f"🤖 AI Insight: You often choose '{most}'. AI adjusted strategy.")
+
+# ------------------ ACHIEVEMENTS ------------------
+def check_achievements(player_score, draws):
+    if player_score >= 3:
+        print("🏅 Achievement Unlocked: First Blood!")
+    if draws >= 3:
+        print("🎯 Achievement Unlocked: Peace Maker!")
+
+# ------------------ GAME LOOP ------------------
+def play_game(profile):
     print("\n🎮 SNAKE–WATER–GUN (ADVANCED MODE)")
-    print("Choose: [s]nake, [w]ater, [g]un")
-    print("Type 'q' anytime to quit\n")
+    print("Commands: s/w/g | stats | help | q")
+    
+    difficulty = input("Choose difficulty (easy / medium / hard): ").lower()
+    if difficulty not in ["easy", "medium", "hard"]:
+        difficulty = "medium"
 
-    # Game setup
     while True:
         try:
-            rounds = int(input("Enter total rounds (odd number recommended): "))
+            rounds = int(input("Enter total rounds: "))
             if rounds > 0:
                 break
         except ValueError:
             pass
-        print("❌ Enter a valid positive number.")
+        print("❌ Enter a valid number.")
 
     player_score = comp_score = draws = 0
     player_history = []
@@ -58,44 +100,51 @@ def play_game(): # Main game loop
 
     for round_no in range(1, rounds + 1):
         print(f"\n🔹 Round {round_no}/{rounds}")
-
         user_input = input("Your move: ").lower()
+
         if user_input == "q":
-            print("\nGame exited early.")
+            print("🚪 Exiting match early.")
             break
+
+        if user_input == "help":
+            print("👉 Use s/w/g to play, stats to view profile, q to quit")
+            continue
+
+        if user_input == "stats":
+            print(f"📊 Games: {profile['games']} | Wins: {profile['wins']} | Losses: {profile['losses']}")
+            continue
 
         player = normalize_choice(user_input)
         if not player:
-            print("❌ Invalid choice. Round skipped.")
+            print("❌ Invalid input.")
             continue
 
-        computer = smart_computer_choice(player_history)
+        computer = computer_choice(player_history, difficulty)
         result = round_result(player, computer)
 
         player_history.append(player)
         history_log.append((player, computer, result))
 
-        print(f"You chose: {player}")
-        print(f"Computer chose: {computer}")
+        print(f"You: {player} | Computer: {computer}")
+        print(f"{RESULT_EMOJI[result]} Result: {result.upper()}")
 
         if result == "win":
-            print("✅ You WIN this round!")
             player_score += 1
         elif result == "lose":
-            print("❌ Computer wins this round.")
             comp_score += 1
         else:
-            print("⚖️ Draw.")
             draws += 1
 
         print(f"Score → You: {player_score} | Computer: {comp_score} | Draws: {draws}")
 
-        # Early win condition
+        if round_no % 3 == 0:
+            explain_ai(player_history)
+
         if player_score > rounds // 2 or comp_score > rounds // 2:
             print("\n🏁 Match decided early!")
             break
 
-    # Final summary and stats 
+    # ------------------ SUMMARY ------------------
     print("\n📊 MATCH SUMMARY")
     print("-" * 30)
     for i, (p, c, r) in enumerate(history_log, start=1):
@@ -105,26 +154,40 @@ def play_game(): # Main game loop
     print(f"You: {player_score} | Computer: {comp_score} | Draws: {draws}")
 
     if player_score > comp_score:
-        print("🎉 CONGRATULATIONS! You won the match.")
+        print("🎉 YOU WON THE MATCH!")
+        profile["wins"] += 1
     elif comp_score > player_score:
-        print("🤖 Computer wins the match.")
+        print("🤖 COMPUTER WON THE MATCH!")
+        profile["losses"] += 1
     else:
-        print("🤝 Match drawn.")
+        print("🤝 MATCH DRAWN")
 
-    total_played = player_score + comp_score + draws
-    if total_played:
-        win_rate = (player_score / total_played) * 100
+    profile["games"] += 1
+    save_profile(profile)
+
+    check_achievements(player_score, draws)
+
+    total = player_score + comp_score + draws
+    if total:
+        win_rate = (player_score / total) * 100
         print(f"📈 Your win rate: {win_rate:.2f}%")
 
+# ------------------ ENTRY POINT ------------------
+def main():
+    profile = load_profile()
 
-def main(): # Entry point for the game
+    if not profile["name"]:
+        profile["name"] = input("Enter your name: ").strip().title()
+        save_profile(profile)
+
+    print(f"\n👋 Welcome, {profile['name']}!")
+
     while True:
-        play_game()
+        play_game(profile)
         again = input("\nPlay again? (y/n): ").lower()
         if again != "y":
             print("\nThanks for playing! 👋")
             break
-
 
 if __name__ == "__main__":
     main()
