@@ -1,92 +1,135 @@
-# import the randum mudule 
-from email import generator
 import random
+import time
 
-# create subjects list 
-subjects = [ 
+# ---------------- SUBJECTS ----------------
+SUBJECTS = [
     "Scientists",
     "Politicians",
     "Celebrities",
     "Tech Companies",
     "Athletes",
-    "sharukh khan",
+    "Shah Rukh Khan",
     "Elon Musk",
     "NASA",
     "Doctors",
     "Teachers",
-    "Prime Ministers modi",
+    "Prime Minister Modi",
     "Engineers",
-    "auto rikshaw drivers",
-    "mumbai local train drivers",
-    "software developers"
+    "Auto Rickshaw Drivers",
+    "Mumbai Local Train Drivers",
+    "Software Developers"
 ]
 
-# create action list
-action = [
+# ---------------- ACTIONS ----------------
+ACTIONS = [
     "discover",
     "announce",
     "launch",
     "investigate",
-    "criticize",
+    "celebrate",
     "support",
     "oppose",
-    "celebrate",
     "revolutionize",
     "transform",
     "ban",
     "promote",
     "debate",
-    "eat eith",
-    "dance with",
-    "sing to"
+    "unexpectedly visit",
+    "collaborate with",
+    "surprise fans with"
 ]
 
-places_and_things = [  # list of places and things
-    "new planet",
-    "groundbreaking technology",
-    " controversial policy",
-    "viral trend",
-    "historic event",
-    " medical breakthrough",
+# ---------------- PLACES / THINGS ----------------
+PLACES_THINGS = [
+    "a new planet",
+    "a groundbreaking technology",
+    "a controversial policy",
+    "a viral trend",
+    "a historic event",
+    "a medical breakthrough",
     "an environmental initiative",
-    " social movement",
+    "a social movement",
     "a sports championship",
-    "cultural festival",
-    "new movie",
+    "a cultural festival",
+    "a new movie",
     "a music album",
-    " fashion line",
-    "video game",
-    "scientific study",
-    "red fort",
-    "india gate",
-    "plate of samosas",
-    "cup of chai"
+    "a fashion line",
+    "a video game",
+    "a scientific study",
+    "the Red Fort",
+    "India Gate",
+    "a plate of samosas",
+    "a cup of chai"
 ]
 
-# function to generate a fake headline 
+# ---------------- HEADLINE STYLES ----------------
+STYLES = [
+    "BREAKING NEWS",
+    "JUST IN",
+    "TRENDING",
+    "EXCLUSIVE",
+    "HEADLINES TODAY"
+]
 
-while True:  # infinite loop to keep generating headlines until user decides to exit
-    subjects_choice = random.choice(subjects) # select a random subject from the subjects
-    action_choice = random.choice(action)
-    places_and_things_choice = random.choice(places_and_things) # select a random place or thing from the places_and_things
-      
-    headline = f"BREAKING NEWS: {subjects_choice} {action_choice} {places_and_things_choice}!"
-    print("\n" + headline) # print the generated headline
-    
-    # user input to generate another headline or exit
-    user_input = input("\nDo you want to another headline?? (Yes/No)").strip().lower()
-    if user_input == "no":
-        break
-
-
-print("\nThanks for using the Fake Headline Generator. Have a fun day")
-
-# function to generate a fake headline 
-generator
+# ---------------- FUNCTIONS ----------------
 def generate_fake_headline():
-    subjects_choice = random.choice(subjects)
-    action_choice = random.choice(action)
-    places_and_things_choice = random.choice(places_and_things)
-      
-    headline = f"BREAKING NEWS: {subjects_choice} {action_choice} {places_and_things_choice}!"
-    return headline # return the generated headline
+    subject = random.choice(SUBJECTS)
+    action = random.choice(ACTIONS)
+    thing = random.choice(PLACES_THINGS)
+    style = random.choice(STYLES)
+
+    return f"{style}: {subject} {action} {thing}!"
+
+def save_headline(headline):
+    with open("headlines.txt", "a", encoding="utf-8") as file:
+        file.write(headline + "\n")
+
+def show_menu():
+    print("\n📰 FAKE HEADLINE GENERATOR")
+    print("1. Generate a headline")
+    print("2. Generate multiple headlines")
+    print("3. Save headline to file")
+    print("4. Exit")
+
+# ---------------- MAIN PROGRAM ----------------
+def main():
+    print("🎉 Welcome to the Advanced Fake Headline Generator 🎉")
+
+    last_headline = ""
+
+    while True:
+        show_menu()
+        choice = input("Choose an option (1-4): ").strip()
+
+        if choice == "1":
+            last_headline = generate_fake_headline()
+            print("\n" + last_headline)
+
+        elif choice == "2":
+            try:
+                count = int(input("How many headlines do you want? "))
+                print("\nGenerating headlines...\n")
+                for _ in range(count):
+                    headline = generate_fake_headline()
+                    print(headline)
+                    time.sleep(0.5)
+            except ValueError:
+                print("❌ Please enter a valid number.")
+
+        elif choice == "3":
+            if last_headline:
+                save_headline(last_headline)
+                print("✅ Headline saved to headlines.txt")
+            else:
+                print("⚠️ Generate a headline first.")
+
+        elif choice == "4":
+            print("\n👋 Thanks for using the Fake Headline Generator. Have a fun day!")
+            break
+
+        else:
+            print("❌ Invalid choice. Try again.")
+
+# ---------------- ENTRY POINT ----------------
+if __name__ == "__main__":
+    main()
